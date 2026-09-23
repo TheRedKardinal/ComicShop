@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useGetItemsQuery } from '../store/apiSlice'
 import { getApiErrorMessage } from '../utils/errors'
 import ItemCard from '../components/ItemCard'
 import PixelLoader from '../components/ui/PixelLoader'
-import { CATEGORY_LABELS, type ComicCategory } from '../types'
+import { CATEGORY_LABELS, getAccent, type ComicCategory } from '../types'
 import './Catalog.css'
 
 export default function Catalog() {
@@ -28,7 +28,18 @@ export default function Catalog() {
     (i) => (!category || i.category === category) && (!publisher || i.publisher === publisher),
   )
 
-  const selectCategory = (next: ComicCategory | null) => {
+  // Il colore della pagina (navbar compresa) segue il filtro: lo applichiamo a <html>.
+  const accent = getAccent(category, publisher)
+  useEffect(() => {
+    const root = document.documentElement
+    if (accent === 'red') delete root.dataset.accent
+    else root.dataset.accent = accent
+    return () => {
+      delete root.dataset.accent
+    }
+  }, [accent])
+
+  const selectCategory =(next: ComicCategory | null) => {
     setCategory(next)
     setPublisher(null)
   }

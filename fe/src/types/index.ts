@@ -7,6 +7,19 @@ export const CATEGORY_LABELS: Record<ComicCategory, string> = {
   ALTRO: 'Altro',
 }
 
+// Colore dominante per categoria (vedi i temi data-accent in theme.css). Supereroi/Marvel usano il rosso di default.
+export type Accent = 'red' | 'dc' | 'italiano' | 'manga' | 'altro'
+
+const CATEGORY_ACCENTS: Record<ComicCategory, Accent> = {
+  SUPEREROI: 'red',
+  FUMETTO_ITALIANO: 'italiano',
+  MANGA: 'manga',
+  ALTRO: 'altro',
+}
+
+export const getAccent = (category: ComicCategory | null, publisher: string | null): Accent =>
+  publisher === 'DC Comics' ? 'dc' : category ? CATEGORY_ACCENTS[category] : 'red'
+
 export interface Item {
   id: string
   name: string

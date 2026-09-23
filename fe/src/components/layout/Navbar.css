@@ -24,7 +24,7 @@
 .cs-navbar__title {
   font-family: var(--cs-font-title);
   font-size: 16px;
-  color: var(--cs-red);
+  color: var(--cs-accent);
   letter-spacing: 1px;
   white-space: nowrap;
 }
@@ -49,12 +49,12 @@
 }
 
 .cs-navbar__link:hover {
-  color: var(--cs-red);
+  color: var(--cs-accent);
 }
 
 .cs-navbar__link--active {
-  color: var(--cs-red);
-  border-bottom-color: var(--cs-red);
+  color: var(--cs-accent);
+  border-bottom-color: var(--cs-accent);
 }
 
 .cs-navbar__actions {
@@ -72,7 +72,7 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: var(--cs-red);
+  background: var(--cs-accent);
   border: 3px solid var(--cs-black);
   box-shadow: var(--cs-shadow-hard-sm);
   padding: 0;
@@ -134,7 +134,7 @@
 .cs-burger__hello {
   font-family: var(--cs-font-title);
   font-size: 11px;
-  color: var(--cs-red-dark);
+  color: var(--cs-accent-dark);
   margin-bottom: 4px;
 }
 
@@ -151,7 +151,7 @@
 }
 
 .cs-burger__item:hover {
-  background: var(--cs-red);
+  background: var(--cs-accent);
   color: var(--cs-white);
 }
 

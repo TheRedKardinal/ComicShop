@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import { CATEGORY_LABELS, type Item } from '../types'
+import { CATEGORY_LABELS, getAccent, type Item } from '../types'
 import { useAddFavouriteMutation, useRemoveFavouriteMutation } from '../store/apiSlice'
 import { getApiErrorMessage } from '../utils/errors'
 import { useAppSelector } from '../store/hooks'
@@ -63,7 +63,7 @@ export default function ItemCard({ item }: ItemCardProps) {
         ) : (
           <div className="cs-card__cover-placeholder">?</div>
         )}
-        <span className={`cs-card__publisher cs-card__publisher--${item.category.toLowerCase()}`}>
+        <span className={`cs-card__publisher cs-card__publisher--${getAccent(item.category, item.publisher)}`}>
           {item.publisher ?? CATEGORY_LABELS[item.category]}
         </span>
         {outOfStock && <span className="cs-card__badge">ESAURITO</span>}

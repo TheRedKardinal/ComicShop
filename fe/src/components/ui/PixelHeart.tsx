@@ -21,7 +21,7 @@ export default function PixelHeart({ filled = false }: PixelHeartProps) {
           y={y}
           width={1}
           height={1}
-          fill={filled ? 'var(--cs-red)' : 'var(--cs-white)'}
+          fill={filled ? 'var(--cs-accent)' : 'var(--cs-white)'}
           stroke="var(--cs-black)"
           strokeWidth={0.12}
         />

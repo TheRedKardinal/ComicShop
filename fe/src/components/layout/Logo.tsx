@@ -35,7 +35,7 @@ export default function Logo({ size = 40 }: LogoProps) {
       className="cs-logo"
     >
       {PIXELS.map(([x, y]) => (
-        <rect key={`s-${x}-${y}`} x={x} y={y} width={cell} height={cell} fill="var(--cs-red)" />
+        <rect key={`s-${x}-${y}`} x={x} y={y} width={cell} height={cell} fill="var(--cs-accent)" />
       ))}
       {STAR.map(([x, y]) => (
         <rect key={`w-${x}-${y}`} x={x} y={y} width={cell} height={cell} fill="var(--cs-white)" />

@@ -9,7 +9,7 @@
 .cs-loader span {
   width: 12px;
   height: 12px;
-  background: var(--cs-red);
+  background: var(--cs-accent);
   border: 2px solid var(--cs-black);
   animation: cs-loader-bounce 0.9s ease-in-out infinite;
 }

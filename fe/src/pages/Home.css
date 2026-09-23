@@ -18,11 +18,11 @@
   font-size: 40px;
   color: var(--cs-black);
   letter-spacing: 2px;
-  text-shadow: 4px 4px 0 var(--cs-red);
+  text-shadow: 4px 4px 0 var(--cs-accent);
 }
 
 .cs-hero__title span {
-  color: var(--cs-red);
+  color: var(--cs-accent);
   text-shadow: 4px 4px 0 var(--cs-black);
 }
 
@@ -38,7 +38,7 @@
   font-size: 13px;
   text-decoration: none;
   color: var(--cs-white);
-  background: var(--cs-red);
+  background: var(--cs-accent);
   border: 3px solid var(--cs-black);
   box-shadow: var(--cs-shadow-hard);
   padding: 16px 24px;
@@ -68,7 +68,7 @@
 .cs-hero__deco {
   position: absolute;
   font-family: var(--cs-font-title);
-  color: var(--cs-red);
+  color: var(--cs-accent);
   opacity: 0.9;
   pointer-events: none;
   animation: cs-float 4s ease-in-out infinite;
@@ -124,7 +124,7 @@
 
 .cs-feature h3 {
   font-size: 13px;
-  color: var(--cs-red);
+  color: var(--cs-accent);
 }
 
 .cs-feature p {

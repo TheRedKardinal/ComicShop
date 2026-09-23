@@ -7,6 +7,15 @@
   --cs-yellow: #ffcf3f;
   --cs-blue: #2b3fd9;
   --cs-grey: #cfc9be;
+  --cs-dc-blue: #0074e8;
+  --cs-pink: #e8368f;
+  --cs-orange: #e8740c;
+  --cs-slate: #6b6b78;
+
+  /* Colore dominante della pagina: rosso di default, cambia con il filtro del catalogo. */
+  --cs-accent: var(--cs-red);
+  --cs-accent-dark: var(--cs-red-dark);
+  --cs-accent-darker: var(--cs-red-darker);
 
   --cs-font-title: 'Press Start 2P', 'Segoe UI', monospace;
   --cs-font-body: 'VT323', 'Segoe UI', monospace;
@@ -20,6 +29,54 @@
   --cs-shadow-red: 6px 6px 0 var(--cs-red-dark);
 
   color-scheme: light;
+  transition:
+    --cs-accent 0.35s ease,
+    --cs-accent-dark 0.35s ease,
+    --cs-accent-darker 0.35s ease;
+}
+
+/* Registrate come colori per poterle animare nel cambio di tema. */
+@property --cs-accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e2222a;
+}
+
+@property --cs-accent-dark {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #a3141a;
+}
+
+@property --cs-accent-darker {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #6e0d12;
+}
+
+/* Temi del catalogo, impostati da Catalog.tsx con <html data-accent="...">. */
+:root[data-accent='dc'] {
+  --cs-accent: var(--cs-dc-blue);
+  --cs-accent-dark: #004fa3;
+  --cs-accent-darker: #002f63;
+}
+
+:root[data-accent='manga'] {
+  --cs-accent: var(--cs-pink);
+  --cs-accent-dark: #a81f63;
+  --cs-accent-darker: #6b1240;
+}
+
+:root[data-accent='italiano'] {
+  --cs-accent: var(--cs-orange);
+  --cs-accent-dark: #a84f05;
+  --cs-accent-darker: #6b3203;
+}
+
+:root[data-accent='altro'] {
+  --cs-accent: var(--cs-slate);
+  --cs-accent-dark: #45454f;
+  --cs-accent-darker: #2b2b33;
 }
 
 *,
@@ -37,8 +94,8 @@ body {
 body {
   background-color: var(--cs-white);
   background-image:
-    radial-gradient(var(--cs-red) 1.5px, transparent 1.5px),
-    radial-gradient(var(--cs-red) 1.5px, transparent 1.5px);
+    radial-gradient(var(--cs-accent) 1.5px, transparent 1.5px),
+    radial-gradient(var(--cs-accent) 1.5px, transparent 1.5px);
   background-size: 28px 28px;
   background-position:
     0 0,

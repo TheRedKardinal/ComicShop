@@ -59,10 +59,10 @@
   color: var(--cs-white);
   background: repeating-linear-gradient(
     45deg,
-    var(--cs-red),
-    var(--cs-red) 10px,
-    var(--cs-red-dark) 10px,
-    var(--cs-red-dark) 20px
+    var(--cs-accent),
+    var(--cs-accent) 10px,
+    var(--cs-accent-dark) 10px,
+    var(--cs-accent-dark) 20px
   );
 }
 
@@ -89,18 +89,21 @@
   padding: 4px 6px;
 }
 
-/* Un colore per categoria: l'etichetta dice subito se è manga, italiano o supereroi. */
-.cs-card__publisher--fumetto_italiano {
-  background: var(--cs-blue);
+/* Un colore per categoria (e per DC), lo stesso che assume la pagina quando si filtra. */
+.cs-card__publisher--dc {
+  background: var(--cs-dc-blue);
+}
+
+.cs-card__publisher--italiano {
+  background: var(--cs-orange);
 }
 
 .cs-card__publisher--manga {
-  background: var(--cs-yellow);
-  color: var(--cs-black);
+  background: var(--cs-pink);
 }
 
 .cs-card__publisher--altro {
-  background: var(--cs-black);
+  background: var(--cs-slate);
 }
 
 .cs-card__category {
@@ -133,7 +136,7 @@
 .cs-card__author {
   font-family: var(--cs-font-body);
   font-size: 17px;
-  color: var(--cs-red-dark);
+  color: var(--cs-accent-dark);
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
