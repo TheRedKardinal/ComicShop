@@ -59,10 +59,10 @@
   color: var(--cs-white);
   background: repeating-linear-gradient(
     45deg,
-    var(--cs-red),
-    var(--cs-red) 10px,
-    var(--cs-red-dark) 10px,
-    var(--cs-red-dark) 20px
+    var(--cs-accent),
+    var(--cs-accent) 10px,
+    var(--cs-accent-dark) 10px,
+    var(--cs-accent-dark) 20px
   );
 }
 
@@ -89,6 +89,31 @@
   padding: 4px 6px;
 }
 
+/* Un colore per categoria (e per DC), lo stesso che assume la pagina quando si filtra. */
+.cs-card__publisher--dc {
+  background: var(--cs-dc-blue);
+}
+
+.cs-card__publisher--italiano {
+  background: var(--cs-orange);
+}
+
+.cs-card__publisher--manga {
+  background: var(--cs-pink);
+}
+
+.cs-card__publisher--altro {
+  background: var(--cs-slate);
+}
+
+.cs-card__category {
+  margin: 0;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--cs-black);
+  opacity: 0.7;
+}
+
 .cs-card__body {
   display: flex;
   flex-direction: column;
@@ -111,7 +136,7 @@
 .cs-card__author {
   font-family: var(--cs-font-body);
   font-size: 17px;
-  color: var(--cs-red-dark);
+  color: var(--cs-accent-dark);
   margin: 0;
   white-space: nowrap;
   overflow: hidden;

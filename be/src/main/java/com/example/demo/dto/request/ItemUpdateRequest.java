@@ -1,5 +1,6 @@
 package com.example.demo.dto.request;
 
+import com.example.demo.model.ComicCategory;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import lombok.Getter;
@@ -19,6 +20,8 @@ public class ItemUpdateRequest {
     private String author;
 
     private String publisher;
+
+    private ComicCategory category;
 
     private String coverUrl;
 

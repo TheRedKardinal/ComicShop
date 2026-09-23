@@ -25,7 +25,7 @@
 }
 
 .cs-pixel-btn--primary {
-  background: var(--cs-red);
+  background: var(--cs-accent);
   color: var(--cs-white);
 }
 

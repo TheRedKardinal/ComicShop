@@ -59,12 +59,38 @@ app:
   open-library:
     base-url: https://openlibrary.org
     user-agent: "ComicShop/1.0 (c.giasi97@gmail.com)"
+    # Con lang=it Open Library restituisce titolo e copertina dell'edizione italiana.
+    language: it
+    # Editori: label = etichetta mostrata, query = testo cercato nel campo publisher.
+    # Un editore nuovo viene importato al riavvio se nel DB non ha ancora fumetti.
+    publishers:
+      - label: Marvel
+        query: Marvel
+        category: SUPEREROI
+      - label: DC Comics
+        query: DC Comics
+        category: SUPEREROI
+      - label: Bonelli
+        query: Sergio Bonelli
+        category: FUMETTO_ITALIANO
+      - label: BAO Publishing
+        query: BAO Publishing
+        category: FUMETTO_ITALIANO
+      - label: J-POP
+        query: J-Pop
+        category: MANGA
+      - label: Planet Manga
+        query: Planet Manga
+        category: MANGA
+      - label: Star Comics
+        query: Star Comics
+        category: MANGA
+    # Subject generiche: riempiono il catalogo (senza editore) solo al primo avvio.
     subjects:
-      - comics
-      - graphic_novels
-    publisher-subjects:
-      marvel_comics: Marvel
-      dc_comics: DC Comics
+      comics: ALTRO
+      graphic_novels: ALTRO
+      manga: MANGA
     limit: 40
     pages: 2
-    max-items: 120
+    per-publisher: 25
+    max-items: 250
