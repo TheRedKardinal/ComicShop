@@ -84,10 +84,16 @@
   box-shadow: none;
 }
 
-/* ---------- Sfoglia: la pagina ruota attorno alla costola (bordo sinistro) ---------- */
+/* ---------- Sfoglia: pagina ferma sotto, foglio che gira sopra ---------- */
+/* Pagina e foglio stanno nella stessa cella della griglia: l'altezza è la maggiore delle due. */
 .cs-catalog__book {
-  perspective: 2400px;
-  perspective-origin: 0% 50%;
+  display: grid;
+  perspective: 3200px;
+  perspective-origin: 50% 40%;
+}
+
+.cs-catalog__book > * {
+  grid-area: 1 / 1;
 }
 
 .cs-catalog__page {
@@ -96,10 +102,6 @@
   background: var(--cs-white);
   border: var(--cs-border) solid var(--cs-black);
   box-shadow: var(--cs-shadow-hard);
-  transform-origin: left center;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  will-change: transform;
 }
 
 /* Piega della costola: ombra sul lato rilegato. */
@@ -109,6 +111,48 @@
   inset: 0 auto 0 0;
   width: 18px;
   background: linear-gradient(to right, rgb(0 0 0 / 0.18), transparent);
+  pointer-events: none;
+}
+
+/* Ombra che il foglio in movimento proietta sulla pagina sotto, più scura vicino alla costola. */
+.cs-catalog__cast {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgb(0 0 0 / 0.6), rgb(0 0 0 / 0.15) 55%, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cs-catalog__leaf {
+  position: relative;
+  z-index: 2;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.cs-catalog__leaf-front {
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+/* Retro del foglio: carta con retino, come l'interno della pagina di un albo. */
+.cs-catalog__leaf-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  border: var(--cs-border) solid var(--cs-black);
+  background-color: #efe9dc;
+  background-image: radial-gradient(rgb(15 13 13 / 0.12) 1.2px, transparent 1.2px);
+  background-size: 10px 10px;
+}
+
+/* Il bordo libero del foglio scurisce mentre si solleva verso chi guarda. */
+.cs-catalog__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgb(0 0 0 / 0.55), rgb(0 0 0 / 0.1) 70%);
   pointer-events: none;
 }
 
