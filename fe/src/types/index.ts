@@ -1,9 +1,19 @@
+export type ComicCategory = 'SUPEREROI' | 'FUMETTO_ITALIANO' | 'MANGA' | 'ALTRO'
+
+export const CATEGORY_LABELS: Record<ComicCategory, string> = {
+  SUPEREROI: 'Supereroi',
+  FUMETTO_ITALIANO: 'Fumetto italiano',
+  MANGA: 'Manga',
+  ALTRO: 'Altro',
+}
+
 export interface Item {
   id: string
   name: string
   price: number
   author: string | null
   publisher: string | null
+  category: ComicCategory
   coverUrl: string | null
   stock: number
   createdAt: string

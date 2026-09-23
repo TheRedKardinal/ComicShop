@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import type { Item } from '../types'
+import { CATEGORY_LABELS, type Item } from '../types'
 import { useAddFavouriteMutation, useRemoveFavouriteMutation } from '../store/apiSlice'
 import { getApiErrorMessage } from '../utils/errors'
 import { useAppSelector } from '../store/hooks'
@@ -63,13 +63,16 @@ export default function ItemCard({ item }: ItemCardProps) {
         ) : (
           <div className="cs-card__cover-placeholder">?</div>
         )}
-        {item.publisher && <span className="cs-card__publisher">{item.publisher}</span>}
+        <span className={`cs-card__publisher cs-card__publisher--${item.category.toLowerCase()}`}>
+          {item.publisher ?? CATEGORY_LABELS[item.category]}
+        </span>
         {outOfStock && <span className="cs-card__badge">ESAURITO</span>}
       </div>
 
       <div className="cs-card__body">
         <h3 className="cs-card__title">{item.name}</h3>
         {item.author && <p className="cs-card__author">{item.author}</p>}
+        <p className="cs-card__category">{CATEGORY_LABELS[item.category]}</p>
         <div className="cs-card__footer">
           <span className="cs-card__price">{priceLabel}</span>
           <span className="cs-card__stock">{outOfStock ? '0 pz' : `${item.stock} pz`}</span>

@@ -5,6 +5,7 @@ import com.example.demo.dto.request.ItemUpdateRequest;
 import com.example.demo.dto.response.ItemResponse;
 import com.example.demo.exception.DuplicateResourceException;
 import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.model.ComicCategory;
 import com.example.demo.model.Item;
 import com.example.demo.model.User;
 import com.example.demo.repository.ItemRepository;
@@ -51,6 +52,7 @@ public class ItemService {
         Item item = new Item(request.getName(), price);
         item.setAuthor(request.getAuthor());
         item.setPublisher(request.getPublisher());
+        item.setCategory(request.getCategory() != null ? request.getCategory() : ComicCategory.ALTRO);
         item.setCoverUrl(request.getCoverUrl());
         item.setStock(request.getStock() != null ? request.getStock() : 0);
         itemRepository.save(item);
@@ -72,6 +74,9 @@ public class ItemService {
         }
         if (request.getPublisher() != null) {
             item.setPublisher(request.getPublisher());
+        }
+        if (request.getCategory() != null) {
+            item.setCategory(request.getCategory());
         }
         if (request.getCoverUrl() != null) {
             item.setCoverUrl(request.getCoverUrl());
@@ -119,6 +124,6 @@ public class ItemService {
 
     private ItemResponse toResponse(Item item, boolean favourite) {
         return new ItemResponse(item.getId(), item.getName(), item.getPrice(), item.getAuthor(), item.getPublisher(),
-                item.getCoverUrl(), item.getStock(), item.getCreatedAt(), favourite);
+                item.getCategory() != null ? item.getCategory() : ComicCategory.ALTRO, item.getCoverUrl(), item.getStock(), item.getCreatedAt(), favourite);
     }
 }

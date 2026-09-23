@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,6 +37,10 @@ public class Item {
     private String author;
 
     private String publisher;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 30)
+    private ComicCategory category;
 
     @Column(name = "cover_url")
     private String coverUrl;

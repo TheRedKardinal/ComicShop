@@ -89,6 +89,28 @@
   padding: 4px 6px;
 }
 
+/* Un colore per categoria: l'etichetta dice subito se è manga, italiano o supereroi. */
+.cs-card__publisher--fumetto_italiano {
+  background: var(--cs-blue);
+}
+
+.cs-card__publisher--manga {
+  background: var(--cs-yellow);
+  color: var(--cs-black);
+}
+
+.cs-card__publisher--altro {
+  background: var(--cs-black);
+}
+
+.cs-card__category {
+  margin: 0;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--cs-black);
+  opacity: 0.7;
+}
+
 .cs-card__body {
   display: flex;
   flex-direction: column;
