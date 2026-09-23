@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: eshopcomics
+
+  datasource:
+    # In locale valgono i valori dopo i due punti. Su Render DatabaseUrl legge
+    # DATABASE_URL e sovrascrive queste tre proprieta'.
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/eshopcomics}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: ${SHOW_SQL:true}
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: UTC
+    open-in-view: false
+
+server:
+  # Render assegna la porta in PORT.
+  port: ${PORT:8080}
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+app:
+  cors:
+    # In produzione: ALLOWED_ORIGIN=https://<fe>.onrender.com (piu' valori separati da virgola).
+    allowed-origins: ${ALLOWED_ORIGIN:http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173}
+
+  jwt:
+    secret: ${JWT_SECRET:c2hvcGNvbWljcy1kZXYtc2VjcmV0LWtleS1jaGFuZ2UtbWUtaW4tcHJvZHVjdGlvbi0xMjM0NTY3ODk=}
+    expiration-ms: 86400000
+
+  admin:
+    username: ${ADMIN_USERNAME:admin}
+    email: ${ADMIN_EMAIL:admin@eshopcomics.com}
+    password: ${ADMIN_PASSWORD:Admin@12345}
+
+  marvel:
+    public-key: ${MARVEL_PUBLIC_KEY:}
+    private-key: ${MARVEL_PRIVATE_KEY:}
+    base-url: https://gateway.marvel.com/v1/public
+
+  open-library:
+    base-url: https://openlibrary.org
+    user-agent: "ComicShop/1.0 (c.giasi97@gmail.com)"
+    subjects:
+      - comics
+      - graphic_novels
+    publisher-subjects:
+      marvel_comics: Marvel
+      dc_comics: DC Comics
+    limit: 40
+    pages: 2
+    max-items: 120

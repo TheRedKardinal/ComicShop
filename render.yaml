@@ -1,0 +1,62 @@
+# Blueprint Render per ComicShop: database + backend + frontend.
+# Su Render: New > Blueprint > repository > Apply.
+
+databases:
+  - name: comicshop-db
+    databaseName: eshopcomics
+    user: comicshop
+    plan: free
+    region: frankfurt
+
+services:
+  # ---------- Backend: Spring Boot via Docker ----------
+  - type: web
+    name: comicshop-be
+    runtime: docker
+    plan: free
+    region: frankfurt
+    rootDir: be
+    # dockerfilePath parte da rootDir; buildFilter dalla radice della repo.
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /actuator/health
+    buildFilter:
+      paths:
+        - be/**
+        - render.yaml
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: comicshop-db
+          property: connectionString
+      # Origine del FE per il CORS, es. https://comicshop-fe.onrender.com
+      - key: ALLOWED_ORIGIN
+        sync: false
+      # Chiave di firma dei JWT: Render genera un valore base64 da 256 bit.
+      - key: JWT_SECRET
+        generateValue: true
+      # Password dell'utente admin creato al primo avvio.
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SHOW_SQL
+        value: "false"
+
+  # ---------- Frontend: build Vite statica ----------
+  - type: web
+    name: comicshop-fe
+    runtime: static
+    rootDir: fe
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    buildFilter:
+      paths:
+        - fe/**
+        - render.yaml
+    envVars:
+      # Indirizzo del BE, es. https://comicshop-be.onrender.com (senza / finale)
+      - key: VITE_API_URL
+        sync: false
+    routes:
+      # React Router: ogni percorso restituisce index.html.
+      - type: rewrite
+        source: /*
+        destination: /index.html

@@ -1,0 +1,71 @@
+.cs-auth {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.cs-auth__card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--cs-white);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cs-auth__card h1 {
+  font-size: 20px;
+  color: var(--cs-red);
+  text-align: center;
+  text-shadow: 3px 3px 0 var(--cs-black);
+  margin-bottom: 4px;
+}
+
+.cs-auth__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cs-auth__field label {
+  font-family: var(--cs-font-title);
+  font-size: 10px;
+  color: var(--cs-black);
+}
+
+.cs-auth__field input {
+  font-family: var(--cs-font-body);
+  font-size: 20px;
+  padding: 10px 12px;
+  border: 3px solid var(--cs-black);
+  background: var(--cs-white);
+  outline: none;
+}
+
+.cs-auth__field input:focus {
+  border-color: var(--cs-red);
+}
+
+.cs-auth__field-error {
+  font-size: 15px;
+  color: var(--cs-red-dark);
+}
+
+.cs-auth__submit {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.cs-auth__switch {
+  text-align: center;
+  font-size: 18px;
+}
+
+.cs-auth__switch a {
+  color: var(--cs-red);
+  font-weight: bold;
+  text-decoration: underline;
+}

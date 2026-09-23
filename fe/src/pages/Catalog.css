@@ -1,0 +1,43 @@
+.cs-catalog {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.cs-catalog__header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.cs-catalog__header h1 {
+  font-size: 26px;
+  color: var(--cs-red);
+  text-shadow: 3px 3px 0 var(--cs-black);
+}
+
+.cs-catalog__header p {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.cs-catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.cs-catalog__error,
+.cs-catalog__empty {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 24px;
+  text-align: center;
+  background: var(--cs-white);
+  font-size: 20px;
+}
+
+.cs-catalog__error {
+  color: var(--cs-red-dark);
+}

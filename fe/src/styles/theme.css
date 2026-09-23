@@ -1,0 +1,180 @@
+:root {
+  --cs-red: #e2222a;
+  --cs-red-dark: #a3141a;
+  --cs-red-darker: #6e0d12;
+  --cs-white: #fdfaf3;
+  --cs-black: #0f0d0d;
+  --cs-yellow: #ffcf3f;
+  --cs-blue: #2b3fd9;
+  --cs-grey: #cfc9be;
+
+  --cs-font-title: 'Press Start 2P', 'Segoe UI', monospace;
+  --cs-font-body: 'VT323', 'Segoe UI', monospace;
+
+  --cs-border: 4px;
+  --cs-notch: 8px;
+  --cs-notch-sm: 4px;
+
+  --cs-shadow-hard: 6px 6px 0 var(--cs-black);
+  --cs-shadow-hard-sm: 3px 3px 0 var(--cs-black);
+  --cs-shadow-red: 6px 6px 0 var(--cs-red-dark);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--cs-white);
+  background-image:
+    radial-gradient(var(--cs-red) 1.5px, transparent 1.5px),
+    radial-gradient(var(--cs-red) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  background-position:
+    0 0,
+    14px 14px;
+  background-attachment: fixed;
+  color: var(--cs-black);
+  font-family: var(--cs-font-body);
+  font-size: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  image-rendering: pixelated;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--cs-font-title);
+  line-height: 1.5;
+  margin: 0;
+  color: var(--cs-black);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: var(--cs-font-body);
+  cursor: pointer;
+}
+
+/* Stepped pixel-art frame: notched corners like an 8-bit sprite border */
+.pixel-corners {
+  clip-path: polygon(
+    0 var(--cs-notch),
+    var(--cs-notch) var(--cs-notch),
+    var(--cs-notch) 0,
+    calc(100% - var(--cs-notch)) 0,
+    calc(100% - var(--cs-notch)) var(--cs-notch),
+    100% var(--cs-notch),
+    100% calc(100% - var(--cs-notch)),
+    calc(100% - var(--cs-notch)) calc(100% - var(--cs-notch)),
+    calc(100% - var(--cs-notch)) 100%,
+    var(--cs-notch) 100%,
+    var(--cs-notch) calc(100% - var(--cs-notch)),
+    0 calc(100% - var(--cs-notch))
+  );
+}
+
+.pixel-corners-sm {
+  clip-path: polygon(
+    0 var(--cs-notch-sm),
+    var(--cs-notch-sm) var(--cs-notch-sm),
+    var(--cs-notch-sm) 0,
+    calc(100% - var(--cs-notch-sm)) 0,
+    calc(100% - var(--cs-notch-sm)) var(--cs-notch-sm),
+    100% var(--cs-notch-sm),
+    100% calc(100% - var(--cs-notch-sm)),
+    calc(100% - var(--cs-notch-sm)) calc(100% - var(--cs-notch-sm)),
+    calc(100% - var(--cs-notch-sm)) 100%,
+    var(--cs-notch-sm) 100%,
+    var(--cs-notch-sm) calc(100% - var(--cs-notch-sm)),
+    0 calc(100% - var(--cs-notch-sm))
+  );
+}
+
+.pixel-panel {
+  background: var(--cs-white);
+  border: var(--cs-border) solid var(--cs-black);
+  box-shadow: var(--cs-shadow-hard);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes cs-pow-in {
+  0% {
+    transform: scale(0) rotate(-18deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15) rotate(6deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-4deg);
+  }
+}
+
+@keyframes cs-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes cs-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes cs-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

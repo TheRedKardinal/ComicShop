@@ -1,0 +1,35 @@
+.cs-pixel-btn {
+  font-family: var(--cs-font-title);
+  font-size: 12px;
+  padding: 12px 18px;
+  border: 3px solid var(--cs-black);
+  box-shadow: var(--cs-shadow-hard-sm);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.cs-pixel-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--cs-black);
+}
+
+.cs-pixel-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--cs-black);
+}
+
+.cs-pixel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--cs-shadow-hard-sm);
+}
+
+.cs-pixel-btn--primary {
+  background: var(--cs-red);
+  color: var(--cs-white);
+}
+
+.cs-pixel-btn--ghost {
+  background: var(--cs-white);
+  color: var(--cs-black);
+}
