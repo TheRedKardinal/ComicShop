@@ -4,6 +4,8 @@ import { useGetItemsQuery } from '../store/apiSlice'
 import { getApiErrorMessage } from '../utils/errors'
 import ItemCard from '../components/ItemCard'
 import PixelLoader from '../components/ui/PixelLoader'
+import Pager from '../components/ui/Pager'
+import usePageAccent from '../hooks/usePageAccent'
 import { CATEGORY_LABELS, getAccent, type ComicCategory, type Item } from '../types'
 import './Catalog.css'
 
@@ -115,16 +117,7 @@ export default function Catalog() {
 
   useEffect(() => () => turnControls.current?.stop(), [])
 
-  // Il colore della pagina (navbar compresa) segue il filtro: lo applichiamo a <html>.
-  const accent = getAccent(category, publisher)
-  useEffect(() => {
-    const root = document.documentElement
-    if (accent === 'red') delete root.dataset.accent
-    else root.dataset.accent = accent
-    return () => {
-      delete root.dataset.accent
-    }
-  }, [accent])
+  usePageAccent(getAccent(category, publisher))
 
   const selectCategory = (next: ComicCategory | null) => {
     setCategory(next)
@@ -141,7 +134,7 @@ export default function Catalog() {
 
   const pager =
     totalPages > 1 ? (
-      <Pager page={currentPage} totalPages={totalPages} onChange={goToPage} />
+      <Pager page={currentPage} totalPages={totalPages} onChange={goToPage} label="Pagine del catalogo" />
     ) : null
 
   return (
@@ -233,40 +226,5 @@ function PageContent({ items, folio }: { items: Item[]; folio: number }) {
       </div>
       <span className="cs-catalog__folio">{folio}</span>
     </>
-  )
-}
-
-interface PagerProps {
-  page: number
-  totalPages: number
-  onChange: (page: number) => void
-}
-
-function Pager({ page, totalPages, onChange }: PagerProps) {
-  // Prima, ultima e le due vicine alla corrente; il resto diventa "…".
-  const shown = [...Array(totalPages).keys()].filter((p) => p === 0 || p === totalPages - 1 || Math.abs(p - page) <= 1)
-
-  return (
-    <nav className="cs-catalog__pager" aria-label="Pagine del catalogo">
-      <button type="button" onClick={() => onChange(page - 1)} disabled={page === 0} aria-label="Pagina precedente">
-        ◀
-      </button>
-      {shown.map((p, index) => (
-        <span key={p} className="cs-catalog__pager-slot">
-          {index > 0 && p - shown[index - 1] > 1 && <span className="cs-catalog__pager-gap">…</span>}
-          <button type="button" onClick={() => onChange(p)} aria-current={p === page ? 'page' : undefined}>
-            {p + 1}
-          </button>
-        </span>
-      ))}
-      <button
-        type="button"
-        onClick={() => onChange(page + 1)}
-        disabled={page === totalPages - 1}
-        aria-label="Pagina successiva"
-      >
-        ▶
-      </button>
-    </nav>
   )
 }

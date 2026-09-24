@@ -13,6 +13,8 @@ const NAV_LINKS = [
   { to: '/catalogo', label: 'Catalogo' },
 ]
 
+const FAVOURITES_LINK = { to: '/preferiti', label: 'Preferiti' }
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate()
@@ -44,7 +46,7 @@ export default function Navbar() {
       </NavLink>
 
       <nav className="cs-navbar__center" aria-label="Navigazione principale">
-        {NAV_LINKS.map((link) => (
+        {(isAuthenticated ? [...NAV_LINKS, FAVOURITES_LINK] : NAV_LINKS).map((link) => (
           <NavLink
             key={link.to}
             to={link.to}
