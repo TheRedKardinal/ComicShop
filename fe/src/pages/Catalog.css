@@ -87,6 +87,7 @@
 /* ---------- Sfoglia: pagina ferma sotto, foglio che gira sopra ---------- */
 /* Pagina e foglio stanno nella stessa cella della griglia: l'altezza è la maggiore delle due. */
 .cs-catalog__book {
+  position: relative;
   display: grid;
   perspective: 3200px;
   perspective-origin: 50% 40%;
@@ -137,15 +138,40 @@
 }
 
 /* Retro del foglio: carta con retino, come l'interno della pagina di un albo. */
+.cs-catalog__leaf-back,
+.cs-catalog__verso {
+  border: var(--cs-border) solid var(--cs-black);
+  background-color: #efe9dc;
+  background-image: radial-gradient(rgb(15 13 13 / 0.12) 1.2px, transparent 1.2px);
+  background-size: 10px 10px;
+}
+
 .cs-catalog__leaf-back {
   position: absolute;
   inset: 0;
   transform: rotateY(180deg);
   backface-visibility: hidden;
-  border: var(--cs-border) solid var(--cs-black);
-  background-color: #efe9dc;
-  background-image: radial-gradient(rgb(15 13 13 / 0.12) 1.2px, transparent 1.2px);
-  background-size: 10px 10px;
+}
+
+/* Pagina già voltata, ferma a sinistra della costola: è dove si posa il foglio a -180°.
+   Lo schermo la taglia (overflow-x su #root), se ne vede quanto c'è posto. */
+.cs-catalog__verso {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  width: 100%;
+}
+
+/* Piega della costola anche sul retro, che a foglio voltato sta sul lato destro. */
+.cs-catalog__leaf-back::before,
+.cs-catalog__verso::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 18px;
+  background: linear-gradient(to left, rgb(0 0 0 / 0.18), transparent);
+  pointer-events: none;
 }
 
 /* Il bordo libero del foglio scurisce mentre si solleva verso chi guarda. */

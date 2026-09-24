@@ -17,6 +17,9 @@ const PAGE_SIZE = 25
  *   da 0° a -180°, andando a posarsi a sinistra con il retro in vista.
  * - Indietro: sotto resta la pagina attuale, il foglio con la precedente
  *   arriva da sinistra (-180°) e si richiude su di essa (0°).
+ * A sinistra della costola resta sempre il retro della pagina già letta
+ * (quanto ne entra nello schermo): il foglio ci si posa sopra o se ne stacca,
+ * così a fine giro non sparisce nulla.
  */
 const TURN_DURATION = 0.9
 const TURN_EASE = [0.45, 0.05, 0.25, 1] as const
@@ -61,6 +64,9 @@ export default function Catalog() {
   // Se il catalogo si accorcia (es. dopo un filtro) non restiamo su una pagina che non esiste più.
   const currentPage = Math.min(page, totalPages - 1)
   const itemsOf = (p: number) => visibleItems.slice(p * PAGE_SIZE, (p + 1) * PAGE_SIZE)
+  // C'è una pagina voltata a sinistra se prima di quella aperta ce n'è almeno una;
+  // durante il giro conta la minore tra le due pagine coinvolte (è quella del foglio).
+  const showVerso = (turn ? turn.leafPage : currentPage) > 0
 
   const goToPage = useCallback(
     (next: number) => {
@@ -192,6 +198,7 @@ export default function Catalog() {
         <>
           {pager}
           <div className="cs-catalog__book">
+            {showVerso && <div className="cs-catalog__verso" aria-hidden="true" />}
             <section className="cs-catalog__page" aria-label={`Pagina ${currentPage + 1} di ${totalPages}`}>
               <PageContent items={itemsOf(currentPage)} folio={currentPage + 1} />
               {turn && <motion.div className="cs-catalog__cast" style={{ opacity: castShadow }} />}
