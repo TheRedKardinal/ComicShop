@@ -109,6 +109,8 @@ body {
 
 #root {
   min-height: 100svh;
+  /* Il foglio del catalogo, voltato, esce a sinistra: niente scroll orizzontale. */
+  overflow-x: clip;
   display: flex;
   flex-direction: column;
 }
