@@ -1,0 +1,309 @@
+.cs-favs {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.cs-favs__header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.cs-favs__header h1 {
+  font-size: 26px;
+  color: var(--cs-accent);
+  text-shadow: 3px 3px 0 var(--cs-black);
+}
+
+.cs-favs__header p {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.cs-favs__error {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 24px;
+  text-align: center;
+  color: var(--cs-red-dark);
+}
+
+/* ---------- Scaffali (una linguetta per categoria) ---------- */
+.cs-favs__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cs-favs__tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--cs-font-title);
+  font-size: 10px;
+  padding: 8px 12px;
+  background: var(--cs-white);
+  color: var(--cs-black);
+  border: 2px solid var(--cs-black);
+  box-shadow: var(--cs-shadow-hard-sm);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+.cs-favs__tabs button:hover {
+  transform: translate(-1px, -1px);
+}
+
+.cs-favs__tabs button[aria-pressed='true'] {
+  background: var(--cs-accent);
+  color: var(--cs-white);
+}
+
+.cs-favs__tabs span {
+  font-size: 8px;
+  padding: 3px 5px;
+  background: var(--cs-black);
+  color: var(--cs-yellow);
+}
+
+.cs-favs__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  margin-top: 28px;
+}
+
+/* ---------- Scena: eroi e onomatopee dello scaffale scelto ---------- */
+.cs-scene {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background-color: var(--cs-white);
+  background-image: radial-gradient(color-mix(in srgb, var(--cs-accent) 35%, transparent) 2px, transparent 2px);
+  background-size: 12px 12px;
+}
+
+/* Supereroi: raggiera gialla da copertina anni '60. */
+.cs-scene--supereroi,
+.cs-scene--tutti {
+  background-color: var(--cs-yellow);
+  background-image: repeating-conic-gradient(from 0deg at 50% 70%, #ffe27a 0deg 8deg, transparent 8deg 16deg);
+  background-size: auto;
+}
+
+/* Manga: linee cinetiche che convergono al centro. */
+.cs-scene--manga {
+  background-color: var(--cs-white);
+  background-image: repeating-conic-gradient(from 0deg at 50% 55%, rgb(15 13 13 / 0.14) 0deg 2deg, transparent 2deg 7deg);
+  background-size: auto;
+}
+
+/* Fumetto italiano: retino da carta stampata. */
+.cs-scene--fumetto_italiano {
+  background-color: #fff4e6;
+}
+
+.cs-scene__heroes {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0 16px 8px;
+}
+
+.cs-scene__hero {
+  display: block;
+  filter: drop-shadow(4px 4px 0 rgb(15 13 13 / 0.35));
+  animation: cs-hero-bob 1.2s steps(2, jump-none) infinite;
+}
+
+.cs-scene__hero--1 {
+  animation-delay: 0.3s;
+}
+
+.cs-scene__hero--2 {
+  animation-delay: 0.6s;
+}
+
+.cs-scene__hero--3 {
+  animation-delay: 0.9s;
+}
+
+@keyframes cs-hero-bob {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ---------- Onomatopee ---------- */
+.cs-sfx {
+  position: absolute;
+  z-index: 1;
+  font-family: var(--cs-font-title);
+  font-size: 22px;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--cs-white);
+  text-shadow:
+    2px 2px 0 var(--cs-black),
+    -2px -2px 0 var(--cs-black),
+    2px -2px 0 var(--cs-black),
+    -2px 2px 0 var(--cs-black),
+    5px 5px 0 var(--cs-black);
+  animation: cs-pow-in 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+.cs-sfx--0 {
+  top: 18px;
+  left: 5%;
+  color: var(--cs-accent);
+  rotate: -10deg;
+}
+
+.cs-sfx--1 {
+  top: 34px;
+  left: 36%;
+  rotate: 6deg;
+}
+
+.cs-sfx--2 {
+  top: 14px;
+  right: 6%;
+  color: var(--cs-yellow);
+  rotate: 8deg;
+}
+
+.cs-sfx--3 {
+  top: 92px;
+  left: 58%;
+  font-size: 16px;
+  rotate: -6deg;
+}
+
+.cs-sfx--long {
+  font-size: 14px;
+}
+
+/* Le scritte giapponesi alla JoJo: verticali, viola, inclinate e "minacciose". */
+.cs-sfx--jp {
+  font-family: 'Yu Gothic UI', 'Yu Gothic', 'Meiryo', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  letter-spacing: -2px;
+  writing-mode: vertical-rl;
+  color: #b04ad8;
+  -webkit-text-stroke: 2px var(--cs-black);
+  paint-order: stroke fill;
+  text-shadow: 4px 4px 0 var(--cs-black);
+}
+
+.cs-sfx--jp.cs-sfx--0 {
+  top: 10px;
+  left: 4%;
+  color: #b04ad8;
+}
+
+.cs-sfx--jp.cs-sfx--1 {
+  top: 8px;
+  left: 30%;
+  color: var(--cs-pink);
+}
+
+.cs-sfx--jp.cs-sfx--2 {
+  top: 10px;
+  right: 30%;
+  color: #7a3fc0;
+}
+
+.cs-sfx--jp.cs-sfx--3 {
+  top: 12px;
+  right: 4%;
+  font-size: 30px;
+  color: var(--cs-yellow);
+}
+
+/* ---------- Nessun preferito / non loggato ---------- */
+.cs-favs__empty {
+  max-width: 520px;
+  margin: 24px auto;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.cs-favs__empty-hero {
+  position: relative;
+  padding-top: 40px;
+}
+
+/* Il suono sta in un fumetto sopra la testa del personaggio. */
+.cs-sfx--bubble {
+  top: 0;
+  left: 60%;
+  font-size: 12px;
+  color: var(--cs-black);
+  text-shadow: none;
+  background: var(--cs-white);
+  border: 3px solid var(--cs-black);
+  padding: 6px 8px;
+  rotate: 4deg;
+}
+
+.cs-favs__cta {
+  font-family: var(--cs-font-title);
+  font-size: 12px;
+  text-decoration: none;
+  padding: 12px 16px;
+  background: var(--cs-accent);
+  color: var(--cs-white);
+  border: 3px solid var(--cs-black);
+  box-shadow: var(--cs-shadow-hard-sm);
+  transition: transform 0.12s ease;
+}
+
+.cs-favs__cta:hover {
+  transform: translate(-1px, -1px);
+}
+
+@media (max-width: 600px) {
+  .cs-scene {
+    height: 180px;
+  }
+
+  /* Su schermo stretto bastano due eroi. */
+  .cs-scene__hero--2,
+  .cs-scene__hero--3 {
+    display: none;
+  }
+
+  .cs-sfx {
+    font-size: 16px;
+  }
+
+  .cs-sfx--long {
+    font-size: 11px;
+  }
+
+  .cs-sfx--jp {
+    font-size: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-scene__hero,
+  .cs-sfx {
+    animation: none;
+  }
+}

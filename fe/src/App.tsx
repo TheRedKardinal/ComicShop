@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar'
 import './App.css'
 import Home from './pages/Home'
 import Catalog from './pages/Catalog'
+import Favourites from './pages/Favourites'
 import Login from './pages/Login'
 import Register from './pages/Register'
 
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalogo" element={<Catalog />} />
+          <Route path="/preferiti" element={<Favourites />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registrati" element={<Register />} />
         </Routes>

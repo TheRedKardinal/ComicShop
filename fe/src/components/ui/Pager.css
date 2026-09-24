@@ -1,0 +1,45 @@
+.cs-pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0;
+}
+
+.cs-pager__slot {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-pager button {
+  min-width: 36px;
+  font-family: var(--cs-font-title);
+  font-size: 10px;
+  padding: 8px 10px;
+  background: var(--cs-white);
+  color: var(--cs-black);
+  border: 2px solid var(--cs-black);
+  box-shadow: var(--cs-shadow-hard-sm);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+
+.cs-pager button:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+}
+
+.cs-pager button[aria-current='page'] {
+  background: var(--cs-accent);
+  color: var(--cs-white);
+}
+
+.cs-pager button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.cs-pager__gap {
+  font-size: 20px;
+}
